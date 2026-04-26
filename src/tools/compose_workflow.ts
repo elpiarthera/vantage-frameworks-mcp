@@ -5,9 +5,16 @@ import { FrameworksError } from "../lib/errors.js";
 import { logger } from "../lib/logger.js";
 
 export const inputSchema = z.object({
-  frameworks: z.array(FRAMEWORK_ID).min(2).max(3),
-  problem: z.string().min(20).describe("The problem to run the workflow against"),
-  locale: z.enum(["en", "fr"]).default("en"),
+  frameworks: z
+    .array(FRAMEWORK_ID)
+    .min(2)
+    .max(3)
+    .describe("Array of 2-3 framework ids to chain in order (e.g. ['5-whys','okr'])"),
+  problem: z.string().min(20).describe("The problem to run the workflow against (min 20 characters)"),
+  locale: z
+    .enum(["en", "fr"])
+    .default("en")
+    .describe("Locale for output: 'en' (default) | 'fr'"),
 });
 
 export const outputSchema = z.object({

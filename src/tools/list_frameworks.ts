@@ -6,8 +6,11 @@ export const inputSchema = z.object({
   category: z
     .enum(["strategy", "innovation", "decision", "communication", "all"])
     .default("all")
-    .describe("Filter by category — categorise frameworks par usage"),
-  locale: z.enum(["en", "fr"]).default("en").describe("Locale for descriptions"),
+    .describe("Filter by category — 'strategy' | 'innovation' | 'decision' | 'communication' | 'all' (default)"),
+  locale: z
+    .enum(["en", "fr"])
+    .default("en")
+    .describe("Locale for output: 'en' (default) | 'fr'"),
 });
 
 export const outputSchema = z.object({

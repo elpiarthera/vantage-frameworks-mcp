@@ -9,9 +9,15 @@ export const inputSchema = z.object({
   problem: z
     .string()
     .min(20)
-    .describe("The situation or problem to analyze"),
-  locale: z.enum(["en", "fr"]).default("en"),
-  depth: z.enum(["quick", "thorough"]).default("quick"),
+    .describe("The situation or problem to analyze (min 20 characters)"),
+  locale: z
+    .enum(["en", "fr"])
+    .default("en")
+    .describe("Locale for output: 'en' (default) | 'fr'"),
+  depth: z
+    .enum(["quick", "thorough"])
+    .default("quick")
+    .describe("Analysis depth — 'quick' (default, structural) or 'thorough' (second-order analysis)"),
 });
 
 export const outputSchema = z.object({

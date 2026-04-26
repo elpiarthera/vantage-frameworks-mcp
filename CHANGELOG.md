@@ -3,6 +3,11 @@
 All notable changes to `@vantage/mcp-frameworks` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [SemVer](https://semver.org/).
 
+## [1.0.4] - 2026-04-26
+### Fixed
+- Zod enum validation errors now return readable `{isError:true, content:[{text:"Validation error: <field>: <reason>"}]}` instead of generic "Internal error" — fixes 2/5 tools previously unusable for LLM clients (apply_framework + suggest_framework).
+- Tool input schema descriptions now list explicit enum values for every `z.enum()` — LLM clients can pick valid values without trial-and-error. Affects `depth`, `goal`, `category`, `locale`, `include_examples`.
+
 ## [1.0.3] - 2026-04-26
 ### Removed
 - Internal `SELLABLE AS` taxonomy marker from public surfaces (README.md, README.fr.md, etc.). This marker is internal ElPi Corp brief taxonomy and should not appear on npm registry, GitHub, or VantageRegistry public catalog.

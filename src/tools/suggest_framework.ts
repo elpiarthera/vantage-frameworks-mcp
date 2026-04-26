@@ -3,9 +3,14 @@ import { FRAMEWORKS } from "../data/frameworks.js";
 import { logger } from "../lib/logger.js";
 
 export const inputSchema = z.object({
-  context: z.string().min(20).describe("The situation or context to analyse"),
-  goal: z.enum(["analyze", "decide", "plan", "communicate", "innovate"]),
-  locale: z.enum(["en", "fr"]).default("en"),
+  context: z.string().min(20).describe("The situation or context to analyse (min 20 characters)"),
+  goal: z
+    .enum(["analyze", "decide", "plan", "communicate", "innovate"])
+    .describe("User intent: 'analyze' | 'decide' | 'plan' | 'communicate' | 'innovate'"),
+  locale: z
+    .enum(["en", "fr"])
+    .default("en")
+    .describe("Locale for output: 'en' (default) | 'fr'"),
 });
 
 export const outputSchema = z.object({

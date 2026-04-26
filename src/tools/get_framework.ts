@@ -5,9 +5,15 @@ import { FrameworksError } from "../lib/errors.js";
 import { logger } from "../lib/logger.js";
 
 export const inputSchema = z.object({
-  id: FRAMEWORK_ID.describe("Framework identifier"),
-  locale: z.enum(["en", "fr"]).default("en"),
-  include_examples: z.boolean().default(true),
+  id: FRAMEWORK_ID.describe("Framework identifier (e.g. 'swot', '5-whys', 'okr')"),
+  locale: z
+    .enum(["en", "fr"])
+    .default("en")
+    .describe("Locale for output: 'en' (default) | 'fr'"),
+  include_examples: z
+    .boolean()
+    .default(true)
+    .describe("Include canonical examples — default true"),
 });
 
 export const outputSchema = z.object({

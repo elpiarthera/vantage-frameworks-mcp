@@ -10,6 +10,7 @@ import { tool as getFramework } from "./tools/get_framework.js";
 import { tool as applyFramework } from "./tools/apply_framework.js";
 import { tool as suggestFramework } from "./tools/suggest_framework.js";
 import { tool as composeWorkflow } from "./tools/compose_workflow.js";
+import { z } from "zod";
 import { logger } from "./lib/logger.js";
 import { FrameworksError } from "./lib/errors.js";
 
@@ -100,6 +101,24 @@ export function createServer(): VantageFrameworksServer {
           };
         }
         try {
+          // Validate args at server boundary so ZodErrors become readable
+          // MCP isError responses (not generic "Internal error"). The handler
+          // re-parses internally, but at that point only valid input flows.
+          try {
+            target.inputSchema.parse(args);
+          } catch (e) {
+            if (e instanceof z.ZodError) {
+              const msg = e.errors
+                .map((err) => `${err.path.join(".") || "<root>"}: ${err.message}`)
+                .join("; ");
+              logger.warn({ tool: name, error: "validation", detail: msg });
+              return {
+                isError: true,
+                content: [{ type: "text", text: `Validation error: ${msg}` }],
+              };
+            }
+            throw e;
+          }
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const out = await (target.handler as (i: any) => Promise<unknown>)(args);
           return {
@@ -107,6 +126,16 @@ export function createServer(): VantageFrameworksServer {
             structuredContent: out,
           };
         } catch (err) {
+          if (err instanceof z.ZodError) {
+            const msg = err.errors
+              .map((e) => `${e.path.join(".") || "<root>"}: ${e.message}`)
+              .join("; ");
+            logger.warn({ tool: name, error: "validation", detail: msg });
+            return {
+              isError: true,
+              content: [{ type: "text", text: `Validation error: ${msg}` }],
+            };
+          }
           if (err instanceof FrameworksError) {
             logger.warn({ tool: name, error: err.code });
             return {
