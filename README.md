@@ -1,14 +1,14 @@
-# @vantage/mcp-frameworks
+# @vantageos/mcp-frameworks
 
 MCP server exposing 16 canonical thinking frameworks for AI agents and humans. Bilingual FR+EN by design.
 
 > Version: 1.0.0 — GA (2026-04-26)
-> Sellable as: `vantage-frameworks-mcp` (claudemarketplaces.com listing) + npm `@vantage/mcp-frameworks`
+> Sellable as: `vantage-frameworks-mcp` (claudemarketplaces.com listing) + npm `@vantageos/mcp-frameworks`
 
 ## Installation
 
 ```bash
-npx -y @vantage/mcp-frameworks
+npx -y @vantageos/mcp-frameworks
 ```
 
 ## Configuration
@@ -20,7 +20,7 @@ npx -y @vantage/mcp-frameworks
   "mcpServers": {
     "vantage-frameworks": {
       "command": "npx",
-      "args": ["-y", "@vantage/mcp-frameworks"]
+      "args": ["-y", "@vantageos/mcp-frameworks"]
     }
   }
 }

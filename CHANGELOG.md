@@ -3,6 +3,11 @@
 All notable changes to `@vantage/mcp-frameworks` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [SemVer](https://semver.org/).
 
+## [1.0.1] - 2026-04-26
+### Changed
+- Renamed npm scope `@vantage` → `@vantageos` for ElPi Corp brand unification (matches existing `@vantageos/vantage-radar-mcp` + `vantageos-agency` GitHub org).
+- No behavioral change. Install command: `npx -y @vantageos/mcp-frameworks` (replaces `@vantage/mcp-frameworks`).
+
 ## [1.0.0] — 2026-04-26
 
 > Build sequence note : 0.1.0 = scaffold (T6.A.1 commit `c4ddcfe`), 1.0.0 = full implementation (T6.A.2-5 commit `86029f5`), same-day fast iteration session Day 51.
@@ -39,5 +44,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - MIT license (year 2026, holder ElPi Corp / Laurent Perello).
 - Examples for Claude Desktop and Cursor configurations.
 
+[1.0.1]: https://github.com/elpiarthera/vantage-frameworks-mcp/releases/tag/v1.0.1
 [1.0.0]: https://github.com/elpiarthera/vantage-frameworks-mcp/releases/tag/v1.0.0
 [0.1.0]: https://github.com/elpiarthera/vantage-frameworks-mcp/releases/tag/v0.1.0
