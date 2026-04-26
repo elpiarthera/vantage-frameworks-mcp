@@ -1,6 +1,6 @@
 {
   "name": "@vantageos/mcp-frameworks",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "MCP server: 16 thinking frameworks (SWOT, OKR, 5 Whys, Cynefin…) as 5 composable tools. Apply, chain, suggest. Bilingual FR+EN. stdio, no API key.",
   "description_fr": "Serveur MCP : 16 frameworks de pensée (SWOT, OKR, 5 Pourquoi, Cynefin…) en 5 outils composables. Appliquer, enchaîner, suggérer. Bilingue FR+EN.",
   "keywords": [
@@ -43,7 +43,9 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "evals": "node scripts/run-evals.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "smoke": "bash scripts/smoke-test-boot.sh",
+    "prepublishOnly": "npm run build && npm run smoke && npm test && npm run evals"
   },
   "engines": {
     "node": ">=20"

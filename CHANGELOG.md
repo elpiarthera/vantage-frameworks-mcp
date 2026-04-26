@@ -3,6 +3,14 @@
 All notable changes to `@vantage/mcp-frameworks` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [SemVer](https://semver.org/).
 
+## [1.0.5] - 2026-04-26
+### Fixed
+- Bug #3: removed silent truncation of `problem` input duplicated inside `apply_framework.analysis[].insight` (and audited same pattern in `compose_workflow.workflow[].input` — clean, no truncation: step-1 input intentionally stores the full problem). Input remains intact in `structuredContent` top-level (`result.problem`); sub-sections now contain pure prompts without verbose duplication that risked truncation.
+
+### Added
+- Pre-publish boot smoke test gate (`scripts/smoke-test-boot.sh` + `prepublishOnly`). `node dist/index.js` must respond to MCP `initialize` handshake before publish proceeds. Lesson #11 fleet-wide capture (Day 51 PM C v1.0.4 broken-publish incident).
+- Hard-gate test `tests/unit/no-input-duplication.test.ts` (3 cases EN+FR + compose_workflow) to prevent bug #3 regression.
+
 ## [1.0.4] - 2026-04-26
 ### Fixed
 - Zod enum validation errors now return readable `{isError:true, content:[{text:"Validation error: <field>: <reason>"}]}` instead of generic "Internal error" — fixes 2/5 tools previously unusable for LLM clients (apply_framework + suggest_framework).

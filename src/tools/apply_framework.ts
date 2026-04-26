@@ -65,12 +65,13 @@ export const tool = {
         ? framework.canvas.sections.map((s) => ({ name: s.name_fr, prompt: s.prompt_fr }))
         : framework.canvas.sections.map((s) => ({ name: s.name, prompt: s.prompt }));
 
+    // Bug #3 fix (v1.0.5): removed silent truncation that duplicated `parsed.problem`
+    // (sliced to 200 chars) inside each insight. The full problem is already exposed in
+    // `result.problem` top-level — LLM client maps it itself. Sub-section insights now
+    // contain pure prompts without verbose duplication that risked truncation.
     const analysis = sections.map((s) => ({
       section: s.name,
-      insight:
-        parsed.locale === "fr"
-          ? `${s.prompt} — applique cette question au problème : "${parsed.problem.slice(0, 200)}"`
-          : `${s.prompt} — apply this question to the problem: "${parsed.problem.slice(0, 200)}"`,
+      insight: s.prompt,
     }));
 
     const recommendation =
