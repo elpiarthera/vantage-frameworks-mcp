@@ -2,8 +2,7 @@
 
 Serveur MCP exposant 16 frameworks de pensée canoniques pour agents IA et humains. Bilingue FR+EN par design.
 
-> Version : 1.0.2 — GA (2026-04-26)
-> Vendable sous : `vantage-frameworks-mcp` (listing claudemarketplaces.com) + npm `@vantageos/mcp-frameworks`
+> Version : 1.0.3 — GA (2026-04-26)
 
 ## À propos
 
@@ -65,7 +64,7 @@ Pas de clé API. Pas de compte. Redémarrez votre client MCP et demandez : "Quel
 ### Doctrine Flexibilité — Phase 1 / Phase 2
 
 Phase 1 (actuelle) : transport stdio, installation locale, pas de clé API, pas de serveur distant.
-Phase 2 (prévue) : transport HTTP pour déploiements distants + tier Pro avec scoping workspace. Auth via Polar.sh. Calendrier : T3 2026.
+Phase 2 (prévue) : transport HTTP pour déploiements distants + tier Pro avec scoping workspace. Auth via Polar.sh. Activée selon le signal d'adoption.
 
 ---
 

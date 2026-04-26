@@ -3,6 +3,11 @@
 All notable changes to `@vantage/mcp-frameworks` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [SemVer](https://semver.org/).
 
+## [1.0.3] - 2026-04-26
+### Removed
+- Internal `SELLABLE AS` taxonomy marker from public surfaces (README.md, README.fr.md, etc.). This marker is internal ElPi Corp brief taxonomy and should not appear on npm registry, GitHub, or VantageRegistry public catalog.
+- Future-dated timelines ("Q3 2026", "Q4 2026", "Timeline:") from public surfaces. Replaced with neutral "Activated based on adoption signal" / "Activée selon le signal d'adoption" — ElPi Corp doctrine: do not commit publicly to dates that ship-fast velocity will invalidate.
+
 ## [1.0.2] - 2026-04-26
 ### Changed
 - Vitrine descriptions across 4 surfaces (package.json, README.md, README.fr.md, VantageRegistry) per ElPi Corp standard: HOOK + WHAT + WHO + WHY + QUICK START + BILINGUAL FR+EN + EXAMPLES + Doctrine Flexibilité Phase 1/2 disclosure.

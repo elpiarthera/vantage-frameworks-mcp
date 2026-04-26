@@ -2,8 +2,7 @@
 
 MCP server exposing 16 canonical thinking frameworks for AI agents and humans. Bilingual FR+EN by design.
 
-> Version: 1.0.2 — GA (2026-04-26)
-> Sellable as: `vantage-frameworks-mcp` (claudemarketplaces.com listing) + npm `@vantageos/mcp-frameworks`
+> Version: 1.0.3 — GA (2026-04-26)
 
 ## About
 
@@ -65,7 +64,7 @@ No API key. No account. Restart your MCP client and ask: "What frameworks do you
 ### Doctrine Flexibilité — Phase 1 / Phase 2
 
 Phase 1 (current): stdio transport, local install, no API key, no remote server.
-Phase 2 (planned): HTTP transport for remote deployments + Pro tier workspace scoping. Auth via Polar.sh. Timeline: Q3 2026.
+Phase 2 (planned): HTTP transport for remote deployments + Pro tier workspace scoping. Auth via Polar.sh. Activated based on adoption signal.
 
 ---
 
