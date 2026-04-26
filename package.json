@@ -1,8 +1,8 @@
 {
   "name": "@vantageos/mcp-frameworks",
-  "version": "1.0.1",
-  "description": "MCP server exposing 16 canonical thinking frameworks (Design Thinking, Lean Startup, SWOT, OKR, MECE, First Principles, 5 Whys, Eisenhower, RACI, OODA, BCG, Porter 5 Forces, Pareto, Hofstede, Cynefin, McKinsey 7S). Bilingual FR+EN.",
-  "description_fr": "Serveur MCP exposant 16 frameworks de pensée canoniques (Design Thinking, Lean Startup, SWOT, OKR, MECE, First Principles, 5 Pourquoi, Eisenhower, RACI, OODA, BCG, Porter 5 Forces, Pareto, Hofstede, Cynefin, McKinsey 7S). Bilingue FR+EN.",
+  "version": "1.0.2",
+  "description": "MCP server: 16 thinking frameworks (SWOT, OKR, 5 Whys, Cynefin…) as 5 composable tools. Apply, chain, suggest. Bilingual FR+EN. stdio, no API key.",
+  "description_fr": "Serveur MCP : 16 frameworks de pensée (SWOT, OKR, 5 Pourquoi, Cynefin…) en 5 outils composables. Appliquer, enchaîner, suggérer. Bilingue FR+EN.",
   "keywords": [
     "mcp",
     "claude-code",

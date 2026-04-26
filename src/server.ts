@@ -1,5 +1,5 @@
 /**
- * MCP server factory — registers the 5 tools of @vantage/mcp-frameworks.
+ * MCP server factory — registers the 5 tools of @vantageos/mcp-frameworks.
  *
  * Lazy-loads the @modelcontextprotocol/sdk only when `connect()` is invoked
  * so the test suite can import `TOOLS` and `createServer` without requiring

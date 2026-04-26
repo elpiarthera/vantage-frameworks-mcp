@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Entry point — @vantage/mcp-frameworks
+ * Entry point — @vantageos/mcp-frameworks
  *
  * Boots the MCP server over stdio transport (Critical Rule #7).
  */

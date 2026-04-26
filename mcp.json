@@ -1,8 +1,8 @@
 {
   "name": "vantage-frameworks-mcp",
-  "version": "1.0.1",
-  "description": "MCP server exposing 16 canonical thinking frameworks. Bilingual FR+EN.",
-  "description_fr": "Serveur MCP exposant 16 frameworks de pensée canoniques. Bilingue FR+EN.",
+  "version": "1.0.2",
+  "description": "MCP server: 16 thinking frameworks (SWOT, OKR, 5 Whys, Cynefin…) as 5 composable tools. Apply, chain, suggest. Bilingual FR+EN. stdio, no API key.",
+  "description_fr": "Serveur MCP : 16 frameworks de pensée (SWOT, OKR, 5 Pourquoi, Cynefin…) en 5 outils composables. Appliquer, enchaîner, suggérer. Bilingue FR+EN.",
   "transport": {
     "type": "stdio",
     "command": "npx",
