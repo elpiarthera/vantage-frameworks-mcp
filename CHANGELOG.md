@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [1.0.0] — 2026-04-26
 
+> Build sequence note : 0.1.0 = scaffold (T6.A.1 commit `c4ddcfe`), 1.0.0 = full implementation (T6.A.2-5 commit `86029f5`), same-day fast iteration session Day 51.
+
 ### Added
 - Full implementation of the 5 MCP tools : `list_frameworks`, `get_framework`, `apply_framework`, `suggest_framework`, `compose_workflow`.
 - Complete bilingual data layer for the 16 canonical frameworks (Design Thinking, Lean Startup, SWOT, OKR, MECE, First Principles, 5 Whys, Eisenhower, RACI, OODA, BCG Matrix, Porter 5 Forces, Pareto, Hofstede, Cynefin, McKinsey 7S) — each with `name/name_fr`, `one_line/one_line_fr`, `description/description_fr`, canvas sections (EN+FR prompts), `steps/steps_fr`, and seed examples.

@@ -2,7 +2,7 @@
 
 Serveur MCP exposant 16 frameworks de pensée canoniques pour agents IA et humains. Bilingue FR+EN par design.
 
-> Version : 0.1.0 — scaffold (pas d'implémentation encore, voir T6.A.2+)
+> Version : 1.0.0 — GA (2026-04-26)
 > Vendable sous : `vantage-frameworks-mcp` (listing claudemarketplaces.com) + npm `@vantage/mcp-frameworks`
 
 ## Installation

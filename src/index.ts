@@ -5,6 +5,7 @@
  * Boots the MCP server over stdio transport (Critical Rule #7).
  */
 import { createServer } from "./server.js";
+import { logger } from "./lib/logger.js";
 
 async function main(): Promise<void> {
   const server = createServer();
@@ -16,7 +17,9 @@ async function main(): Promise<void> {
 }
 
 main().catch((err: unknown) => {
-  // eslint-disable-next-line no-console
-  console.error("[vantage-frameworks] fatal:", err);
+  logger.error({
+    msg: "fatal_boot_error",
+    error: err instanceof Error ? err.message : String(err),
+  });
   process.exit(1);
 });

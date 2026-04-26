@@ -2,7 +2,7 @@
 
 MCP server exposing 16 canonical thinking frameworks for AI agents and humans. Bilingual FR+EN by design.
 
-> Version: 0.1.0 — scaffold (no implementation yet, see T6.A.2+)
+> Version: 1.0.0 — GA (2026-04-26)
 > Sellable as: `vantage-frameworks-mcp` (claudemarketplaces.com listing) + npm `@vantage/mcp-frameworks`
 
 ## Installation
