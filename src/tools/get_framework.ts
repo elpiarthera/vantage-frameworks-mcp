@@ -1,5 +1,8 @@
 import { z } from "zod";
 import { FRAMEWORK_ID } from "../schemas/index.js";
+import { getFrameworkById } from "../data/frameworks.js";
+import { FrameworksError } from "../lib/errors.js";
+import { logger } from "../lib/logger.js";
 
 export const inputSchema = z.object({
   id: FRAMEWORK_ID.describe("Framework identifier"),
@@ -35,7 +38,39 @@ export const tool = {
     "Récupère le canvas complet et les prompts d'un framework de pensée spécifique. Utilise-le quand l'utilisateur veut approfondir un framework, l'appliquer à un problème ou apprendre à l'utiliser — même s'il ne dit pas 'obtenir framework' explicitement.",
   inputSchema,
   outputSchema,
-  handler: async (_input: GetFrameworkInput): Promise<GetFrameworkOutput> => {
-    throw new Error("NotImplemented — T6.A.3");
+  handler: async (input: GetFrameworkInput): Promise<GetFrameworkOutput> => {
+    const t0 = Date.now();
+    const parsed = inputSchema.parse(input);
+    const framework = getFrameworkById(parsed.id);
+    if (!framework) {
+      throw new FrameworksError("FRAMEWORK_NOT_FOUND", parsed.locale, { id: parsed.id });
+    }
+
+    // Locale-routed canvas: pick FR or EN section names + prompts.
+    const canvasSections = framework.canvas.sections.map((s) =>
+      parsed.locale === "fr"
+        ? { name: s.name_fr, prompt: s.prompt_fr }
+        : { name: s.name, prompt: s.prompt },
+    );
+
+    const examples =
+      parsed.locale === "fr" ? framework.examples_fr : framework.examples;
+
+    const result: GetFrameworkOutput = {
+      id: framework.id,
+      name: framework.name,
+      name_fr: framework.name_fr,
+      description: framework.description,
+      description_fr: framework.description_fr,
+      canvas: { sections: canvasSections },
+      steps: framework.steps,
+      steps_fr: framework.steps_fr,
+      ...(parsed.include_examples ? { examples } : {}),
+      fetchedAt: new Date().toISOString(),
+    };
+
+    const validated = outputSchema.parse(result);
+    logger.info({ tool: "get_framework", duration_ms: Date.now() - t0 });
+    return validated;
   },
 };

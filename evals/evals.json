@@ -1,0 +1,210 @@
+{
+  "server_name": "vantage-frameworks-mcp",
+  "version": "1.0.0",
+  "evals": [
+    {
+      "id": 1,
+      "tool": "list_frameworks",
+      "prompt": "List every available thinking framework in French.",
+      "input": { "category": "all", "locale": "fr" },
+      "expected_output": "An object with count=16 and 16 entries each carrying name_fr + one_line_fr.",
+      "expectations": [
+        "tool 'list_frameworks' was called",
+        "output.count === 16",
+        "every framework has a non-empty name_fr"
+      ]
+    },
+    {
+      "id": 2,
+      "tool": "list_frameworks",
+      "prompt": "Filter frameworks to the 'strategy' category in English.",
+      "input": { "category": "strategy", "locale": "en" },
+      "expected_output": "Subset that includes swot, okr, bcg-matrix, porter-5-forces, mckinsey-7s.",
+      "expectations": [
+        "tool 'list_frameworks' was called",
+        "output.frameworks every category equals 'strategy'",
+        "ids include swot, okr, bcg-matrix, porter-5-forces, mckinsey-7s"
+      ]
+    },
+    {
+      "id": 3,
+      "tool": "list_frameworks",
+      "prompt": "Try to filter by a bogus category to confirm validation.",
+      "input": { "category": "bogus", "locale": "en" },
+      "expected_output": "An invalid_params / Zod error.",
+      "expectations": [
+        "handler throws",
+        "error message references the input parameters"
+      ]
+    },
+    {
+      "id": 4,
+      "tool": "get_framework",
+      "prompt": "Get the SWOT canvas in English with examples.",
+      "input": { "id": "swot", "locale": "en", "include_examples": true },
+      "expected_output": "Object with id=swot, 4 canvas sections, examples.length>=1.",
+      "expectations": [
+        "tool 'get_framework' was called",
+        "output.id === 'swot'",
+        "output.canvas.sections has length 4",
+        "output.examples.length >= 1"
+      ]
+    },
+    {
+      "id": 5,
+      "tool": "get_framework",
+      "prompt": "Récupère le framework Design Thinking en français avec exemples.",
+      "input": { "id": "design-thinking", "locale": "fr", "include_examples": true },
+      "expected_output": "Sections de canvas en français commençant par 'Empathie'.",
+      "expectations": [
+        "tool 'get_framework' was called",
+        "output.canvas.sections[0].name === 'Empathie'",
+        "output.steps_fr.length >= 5"
+      ]
+    },
+    {
+      "id": 6,
+      "tool": "get_framework",
+      "prompt": "Get a framework with an invalid id.",
+      "input": { "id": "not-a-framework", "locale": "en", "include_examples": true },
+      "expected_output": "Validation error from Zod enum.",
+      "expectations": ["handler throws"]
+    },
+    {
+      "id": 7,
+      "tool": "apply_framework",
+      "prompt": "Apply SWOT to a 2026 boutique consultancy positioning question.",
+      "input": {
+        "framework_id": "swot",
+        "problem": "Our boutique consultancy is planning 2026 and we want to win in AI services.",
+        "locale": "en",
+        "depth": "thorough"
+      },
+      "expected_output": "Structured analysis with 4 SWOT sections + recommendation + caveats.",
+      "expectations": [
+        "output.analysis.length === 4",
+        "output.recommendation references SWOT",
+        "output.caveats.length >= 2"
+      ]
+    },
+    {
+      "id": 8,
+      "tool": "apply_framework",
+      "prompt": "Apply 5 Whys to a recurring deploy failure.",
+      "input": {
+        "framework_id": "5-whys",
+        "problem": "Production deployment failed twice in a row this week and nobody knows why.",
+        "locale": "en",
+        "depth": "quick"
+      },
+      "expected_output": "5 (or more) Why-section analyses + a process-level countermeasure recommendation.",
+      "expectations": [
+        "output.analysis.length >= 5",
+        "output.recommendation references 5 Whys"
+      ]
+    },
+    {
+      "id": 9,
+      "tool": "apply_framework",
+      "prompt": "Apply a framework to a too-short problem to confirm error message localisation.",
+      "input": {
+        "framework_id": "swot",
+        "problem": "trop court",
+        "locale": "fr",
+        "depth": "quick"
+      },
+      "expected_output": "FrameworksError(code=PROBLEM_TOO_SHORT) with French message.",
+      "expectations": [
+        "handler throws FrameworksError",
+        "error.code === 'PROBLEM_TOO_SHORT'",
+        "error.message contains '20 caractères'"
+      ]
+    },
+    {
+      "id": 10,
+      "tool": "suggest_framework",
+      "prompt": "I need to decide between two product paths for next quarter.",
+      "input": {
+        "context": "I need to decide between two product paths for next quarter.",
+        "goal": "decide",
+        "locale": "en"
+      },
+      "expected_output": "Top 3 suggestions including at least one of eisenhower/okr/cynefin.",
+      "expectations": [
+        "output.suggestions.length <= 3",
+        "ids overlap with [eisenhower, okr, cynefin]",
+        "scores are monotonically non-increasing"
+      ]
+    },
+    {
+      "id": 11,
+      "tool": "suggest_framework",
+      "prompt": "Run with a too-short context.",
+      "input": { "context": "short", "goal": "analyze", "locale": "en" },
+      "expected_output": "Validation error.",
+      "expectations": ["handler throws"]
+    },
+    {
+      "id": 12,
+      "tool": "suggest_framework",
+      "prompt": "Ambiguous executive workshop ask in French.",
+      "input": {
+        "context": "We need a generic structuring tool for an executive workshop.",
+        "goal": "communicate",
+        "locale": "fr"
+      },
+      "expected_output": "Up to 3 suggestions with FR-localised reasons.",
+      "expectations": [
+        "output.suggestions.length <= 3",
+        "every reason matches /Catégorie|alignée/"
+      ]
+    },
+    {
+      "id": 13,
+      "tool": "compose_workflow",
+      "prompt": "Compose [5-whys, eisenhower, okr] on a team overload problem.",
+      "input": {
+        "frameworks": ["5-whys", "eisenhower", "okr"],
+        "problem": "Our team is overloaded and missing strategic priorities every quarter.",
+        "locale": "en"
+      },
+      "expected_output": "3-step workflow with synthesis citing the chain.",
+      "expectations": [
+        "output.workflow.length === 3",
+        "output.workflow[0].framework matches /5 Whys/",
+        "output.final_synthesis matches /5 Whys/"
+      ]
+    },
+    {
+      "id": 14,
+      "tool": "compose_workflow",
+      "prompt": "Compose [pareto, swot] in French (bilingual happy path).",
+      "input": {
+        "frameworks": ["pareto", "swot"],
+        "problem": "Notre support client est saturé et nous voulons définir une stratégie 2026.",
+        "locale": "fr"
+      },
+      "expected_output": "2-step workflow with French names + 'Synthèse' synthesis.",
+      "expectations": [
+        "output.workflow.length === 2",
+        "output.workflow[0].framework matches /Pareto/",
+        "output.final_synthesis matches /Synthèse/"
+      ]
+    },
+    {
+      "id": 15,
+      "tool": "compose_workflow",
+      "prompt": "Reject a workflow of 4 frameworks.",
+      "input": {
+        "frameworks": ["swot", "okr", "5-whys", "eisenhower"],
+        "problem": "An otherwise valid problem statement of more than twenty characters.",
+        "locale": "fr"
+      },
+      "expected_output": "FrameworksError(code=TOO_MANY_FRAMEWORKS) in French.",
+      "expectations": [
+        "handler throws FrameworksError",
+        "error.code === 'TOO_MANY_FRAMEWORKS'"
+      ]
+    }
+  ]
+}

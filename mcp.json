@@ -1,6 +1,6 @@
 {
   "name": "vantage-frameworks-mcp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "MCP server exposing 16 canonical thinking frameworks. Bilingual FR+EN.",
   "description_fr": "Serveur MCP exposant 16 frameworks de pensée canoniques. Bilingue FR+EN.",
   "transport": {

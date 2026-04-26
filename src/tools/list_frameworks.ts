@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { FRAMEWORKS, getFrameworksByCategory } from "../data/frameworks.js";
+import { logger } from "../lib/logger.js";
 
 export const inputSchema = z.object({
   category: z
@@ -34,7 +36,25 @@ export const tool = {
     "Liste tous les frameworks de pensée disponibles. Utilise-le quand l'utilisateur veut découvrir des frameworks pour la stratégie, l'innovation, la décision ou la communication — même s'il ne dit pas 'lister' explicitement.",
   inputSchema,
   outputSchema,
-  handler: async (_input: ListFrameworksInput): Promise<ListFrameworksOutput> => {
-    throw new Error("NotImplemented — T6.A.3");
+  handler: async (input: ListFrameworksInput): Promise<ListFrameworksOutput> => {
+    const t0 = Date.now();
+    const parsed = inputSchema.parse(input);
+    const filtered = getFrameworksByCategory(parsed.category);
+    const result: ListFrameworksOutput = {
+      frameworks: filtered.map((f) => ({
+        id: f.id,
+        name: f.name,
+        name_fr: f.name_fr,
+        category: f.category,
+        one_line: f.one_line,
+        one_line_fr: f.one_line_fr,
+      })),
+      count: filtered.length,
+      fetchedAt: new Date().toISOString(),
+    };
+    const validated = outputSchema.parse(result);
+    logger.info({ tool: "list_frameworks", duration_ms: Date.now() - t0 });
+    void FRAMEWORKS;
+    return validated;
   },
 };

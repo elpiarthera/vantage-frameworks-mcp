@@ -3,6 +3,26 @@
 All notable changes to `@vantage/mcp-frameworks` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [SemVer](https://semver.org/).
 
+## [1.0.0] — 2026-04-26
+
+### Added
+- Full implementation of the 5 MCP tools : `list_frameworks`, `get_framework`, `apply_framework`, `suggest_framework`, `compose_workflow`.
+- Complete bilingual data layer for the 16 canonical frameworks (Design Thinking, Lean Startup, SWOT, OKR, MECE, First Principles, 5 Whys, Eisenhower, RACI, OODA, BCG Matrix, Porter 5 Forces, Pareto, Hofstede, Cynefin, McKinsey 7S) — each with `name/name_fr`, `one_line/one_line_fr`, `description/description_fr`, canvas sections (EN+FR prompts), `steps/steps_fr`, and seed examples.
+- Bilingual error catalog (`src/i18n/{en,fr}.json`) wired through `lib/i18n.ts` and `lib/errors.ts` (typed `FrameworksError` with code + locale + payload data).
+- Stdio transport wiring via `@modelcontextprotocol/sdk` ; lazy import keeps unit tests SDK-agnostic.
+- Structured JSON logger writing to stderr (Critical Rule #6 : no stack-trace leak, opt-in debug mode via `DEBUG=vantage-frameworks:*`).
+- Vitest configuration with v8 coverage and 80 % thresholds on lines / branches / functions / statements.
+- 29 unit + integration tests, including the 15-case minimum from spec §7 (3 cases per tool, FR + EN happy paths, edge cases, validation failures).
+- `evals/evals.json` (15 cases) + `scripts/run-evals.js` runner exposed as `npm run evals`.
+
+### Changed
+- `package.json` and `mcp.json` bumped to `1.0.0` (parity).
+- TypeScript build target cleaned up : `tsc` produces ESM in `dist/` consumed by the npx binary.
+
+### Pending (post-build)
+- T7 — `mcp-spec-reviewer` audit (10 Critical Rules + Doctrine Flexibilité 5/5).
+- T8 — Multi-channel publish (npm + GitHub Release + claudemarketplaces.com + VantageRegistry).
+
 ## [0.1.0] — 2026-04-26
 
 ### Added
@@ -17,10 +37,5 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - MIT license (year 2026, holder ElPi Corp / Laurent Perello).
 - Examples for Claude Desktop and Cursor configurations.
 
-### Pending (deferred to next sub-tasks)
-- T6.A.2 — TDD tests-first (15 cases per spec §7).
-- T6.A.3 — Real framework data + tool handlers.
-- T6.A.4 — stdio transport wiring + integration tests.
-- T6.A.5 — Eval suite (≥3/tool) + coverage 80% gate.
-
+[1.0.0]: https://github.com/elpiarthera/vantage-frameworks-mcp/releases/tag/v1.0.0
 [0.1.0]: https://github.com/elpiarthera/vantage-frameworks-mcp/releases/tag/v0.1.0

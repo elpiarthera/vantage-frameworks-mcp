@@ -1,11 +1,11 @@
 {
-  "error.invalid_params": "",
-  "error.framework_not_found": "",
-  "error.problem_too_short": "",
-  "error.too_many_frameworks": "",
-  "error.too_few_frameworks": "",
-  "error.internal": "",
-  "error.invalid_category": "",
-  "error.invalid_goal": "",
-  "warn.output_validation_failed": ""
+  "error.invalid_params": "Paramètres invalides fournis à l'outil.",
+  "error.framework_not_found": "Aucun framework trouvé pour cet identifiant.",
+  "error.problem_too_short": "La description du problème doit comporter au moins 20 caractères.",
+  "error.too_many_frameworks": "compose_workflow accepte au maximum 3 frameworks.",
+  "error.too_few_frameworks": "compose_workflow nécessite au moins 2 frameworks.",
+  "error.internal": "Une erreur interne est survenue lors du traitement de la requête.",
+  "error.invalid_category": "Catégorie inconnue. Valeurs autorisées : strategy, innovation, decision, communication, all.",
+  "error.invalid_goal": "Objectif inconnu. Valeurs autorisées : analyze, decide, plan, communicate, innovate.",
+  "warn.output_validation_failed": "La sortie de l'outil n'a pas passé la validation de schéma ; le payload a été rejeté avant envoi au client."
 }

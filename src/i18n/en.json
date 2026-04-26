@@ -1,11 +1,11 @@
 {
-  "error.invalid_params": "",
-  "error.framework_not_found": "",
-  "error.problem_too_short": "",
-  "error.too_many_frameworks": "",
-  "error.too_few_frameworks": "",
-  "error.internal": "",
-  "error.invalid_category": "",
-  "error.invalid_goal": "",
-  "warn.output_validation_failed": ""
+  "error.invalid_params": "Invalid parameters provided to the tool.",
+  "error.framework_not_found": "Framework not found for the given identifier.",
+  "error.problem_too_short": "The problem description must be at least 20 characters long.",
+  "error.too_many_frameworks": "compose_workflow accepts a maximum of 3 frameworks.",
+  "error.too_few_frameworks": "compose_workflow requires at least 2 frameworks.",
+  "error.internal": "An internal error occurred while processing the request.",
+  "error.invalid_category": "Unknown category. Allowed: strategy, innovation, decision, communication, all.",
+  "error.invalid_goal": "Unknown goal. Allowed: analyze, decide, plan, communicate, innovate.",
+  "warn.output_validation_failed": "Tool output failed schema validation; payload was rejected before being sent to the client."
 }
