@@ -1,0 +1,67 @@
+{
+  "name": "@vantage/mcp-frameworks",
+  "version": "0.1.0",
+  "description": "MCP server exposing 16 canonical thinking frameworks (Design Thinking, Lean Startup, SWOT, OKR, MECE, First Principles, 5 Whys, Eisenhower, RACI, OODA, BCG, Porter 5 Forces, Pareto, Hofstede, Cynefin, McKinsey 7S). Bilingual FR+EN.",
+  "description_fr": "Serveur MCP exposant 16 frameworks de pensée canoniques (Design Thinking, Lean Startup, SWOT, OKR, MECE, First Principles, 5 Pourquoi, Eisenhower, RACI, OODA, BCG, Porter 5 Forces, Pareto, Hofstede, Cynefin, McKinsey 7S). Bilingue FR+EN.",
+  "keywords": [
+    "mcp",
+    "claude-code",
+    "frameworks",
+    "thinking",
+    "strategy",
+    "decision",
+    "innovation",
+    "vantage",
+    "elpi"
+  ],
+  "license": "MIT",
+  "author": "ElPi Corp / Laurent Perello",
+  "homepage": "https://github.com/elpiarthera/vantage-frameworks-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elpiarthera/vantage-frameworks-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elpiarthera/vantage-frameworks-mcp/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "vantage-frameworks-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.fr.md",
+    "LICENSE",
+    "mcp.json"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --target node20 --dts",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "evals": "node scripts/run-evals.js",
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^1.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

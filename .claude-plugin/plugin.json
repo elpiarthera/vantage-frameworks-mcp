@@ -1,0 +1,12 @@
+{
+  "name": "vantage-frameworks-mcp",
+  "version": "0.1.0",
+  "description": "16 canonical thinking frameworks (Design Thinking, Lean Startup, SWOT, OKR, MECE, First Principles, 5 Whys, Eisenhower, RACI, OODA, BCG, Porter 5 Forces, Pareto, Hofstede, Cynefin, McKinsey 7S) exposed as MCP tools.",
+  "description_fr": "16 frameworks de pensée canoniques (Design Thinking, Lean Startup, SWOT, OKR, MECE, First Principles, 5 Pourquoi, Eisenhower, RACI, OODA, BCG, Porter 5 Forces, Pareto, Hofstede, Cynefin, McKinsey 7S) exposés comme tools MCP.",
+  "author": "ElPi Corp / Laurent Perello",
+  "license": "MIT",
+  "homepage": "https://github.com/elpiarthera/vantage-frameworks-mcp",
+  "category": "mcp-server",
+  "bilingual": true,
+  "keywords": ["mcp", "claude-code", "frameworks", "thinking", "strategy", "vantage"]
+}

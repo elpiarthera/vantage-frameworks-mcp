@@ -1,0 +1,11 @@
+{
+  "error.invalid_params": "",
+  "error.framework_not_found": "",
+  "error.problem_too_short": "",
+  "error.too_many_frameworks": "",
+  "error.too_few_frameworks": "",
+  "error.internal": "",
+  "error.invalid_category": "",
+  "error.invalid_goal": "",
+  "warn.output_validation_failed": ""
+}

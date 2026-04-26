@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "vantage-frameworks": {
+      "command": "npx",
+      "args": ["-y", "@vantage/mcp-frameworks"]
+    }
+  }
+}
