@@ -24,7 +24,7 @@ async function callTool(name: string, args: unknown): Promise<{
       target.inputSchema.parse(args);
     } catch (e) {
       if (e instanceof z.ZodError) {
-        const msg = e.errors
+        const msg = e.issues
           .map((err) => `${err.path.join(".") || "<root>"}: ${err.message}`)
           .join("; ");
         return { isError: true, content: [{ type: "text", text: `Validation error: ${msg}` }] };
@@ -36,7 +36,7 @@ async function callTool(name: string, args: unknown): Promise<{
     return { content: [{ type: "text", text: JSON.stringify(out) }] };
   } catch (err) {
     if (err instanceof z.ZodError) {
-      const msg = err.errors
+      const msg = err.issues
         .map((e) => `${e.path.join(".") || "<root>"}: ${e.message}`)
         .join("; ");
       return { isError: true, content: [{ type: "text", text: `Validation error: ${msg}` }] };

@@ -3,6 +3,12 @@
 All notable changes to `@vantage/mcp-frameworks` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [SemVer](https://semver.org/).
 
+## [Unreleased]
+
+### Security
+
+- Runtime: `zod` `^3.23.0` → `^4.6.7` (GHSA-mrhx-c7xc-m3w5, memory exhaustion while validating oversized constrained collections; no fixed 3.x release, fixed in 4.6.6). Code migrated to the zod 4 API: `ZodError.errors` → `.issues`, the tool-list JSON Schema reads `inputSchema.shape` instead of the removed `_def.shape()`. Overrides `body-parser ^2.4.0`, `hono ^4.12.25`, `ip-address ^10.3.1` close the remaining transitive High advisories.
+
 ## [1.0.5] - 2026-04-26
 ### Fixed
 - Bug #3: removed silent truncation of `problem` input duplicated inside `apply_framework.analysis[].insight` (and audited same pattern in `compose_workflow.workflow[].input` — clean, no truncation: step-1 input intentionally stores the full problem). Input remains intact in `structuredContent` top-level (`result.problem`); sub-sections now contain pure prompts without verbose duplication that risked truncation.

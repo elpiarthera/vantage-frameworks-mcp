@@ -31,13 +31,12 @@ function jsonSchemaFromZod(toolDef: AnyTool): Record<string, unknown> {
   // Minimal hand-rolled converter — keeps the package free of an extra dep.
   // The SDK accepts any JSON-Schema-compatible object; this loose shape is
   // good enough for tools/list and tools/call discovery in MCP clients.
-  const shape = toolDef.inputSchema._def.shape();
+  // zod 4: `shape` is the public accessor (zod 3's `_def.shape()` is gone).
+  const shape = toolDef.inputSchema.shape;
   const properties: Record<string, unknown> = {};
   const required: string[] = [];
   for (const [key, value] of Object.entries(shape)) {
-    const def = (value as { _def: { typeName: string; description?: string } })._def;
-    const description =
-      (value as { description?: string }).description ?? def.description ?? "";
+    const description = (value as { description?: string }).description ?? "";
     properties[key] = { description };
     // Naive required detection: if no .default applied at top level.
     const hasDefault =
@@ -108,7 +107,7 @@ export function createServer(): VantageFrameworksServer {
             target.inputSchema.parse(args);
           } catch (e) {
             if (e instanceof z.ZodError) {
-              const msg = e.errors
+              const msg = e.issues
                 .map((err) => `${err.path.join(".") || "<root>"}: ${err.message}`)
                 .join("; ");
               logger.warn({ tool: name, error: "validation", detail: msg });
@@ -127,7 +126,7 @@ export function createServer(): VantageFrameworksServer {
           };
         } catch (err) {
           if (err instanceof z.ZodError) {
-            const msg = err.errors
+            const msg = err.issues
               .map((e) => `${e.path.join(".") || "<root>"}: ${e.message}`)
               .join("; ");
             logger.warn({ tool: name, error: "validation", detail: msg });
