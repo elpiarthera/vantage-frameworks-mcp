@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
-    "zod": "^3.23.0"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
@@ -63,5 +63,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "overrides": {
+    "body-parser": "^2.4.0",
+    "hono": "^4.12.25",
+    "ip-address": "^10.3.1"
   }
 }
